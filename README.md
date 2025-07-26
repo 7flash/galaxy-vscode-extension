@@ -1,77 +1,132 @@
-Galaxy VSCode Extension
+# 🚀 Galaxy VSCode Extension
+
+[![VS Code Marketplace](https://img.shields.io/badge/Marketplace-Galaxy%20Extension-blue?style=for-the-badge&logo=visualstudiocode)](https://marketplace.visualstudio.com/vscode)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+
 A powerful VSCode extension designed to streamline your development workflow with advanced file management, diff application, and code prompting capabilities.
 
-Description
-The Galaxy VSCode Extension is a suite of tools built directly into your editor to handle common but complex tasks. Whether you need to view an entire directory at once, prepare a large codebase for an LLM prompt, or apply a patch file without dropping into the terminal, this extension has you covered. All operations are logged for easy debugging.
+---
 
-Features
-📂 Open Folder in Panes: Instantly open every text file within a selected directory, each in its own separate editor pane. Perfect for getting a "full view" of a component or module.
+## Table of Contents
 
-📝 Run Prompter: Select a file and run the prompter to recursively expand all local file and directory paths mentioned within it. The tool intelligently packages the contents into a single, context-rich output, ready to be copied and pasted into a Large Language Model (LLM).
+- [Description](#description)
+- [Key Features](#key-features)
+- [Commands & Keybindings](#commands--keybindings)
+- [Installation](#installation)
+- [Usage Guide](#usage-guide)
+  - [📂 Open Folder in Panes](#-open-folder-in-panes)
+  - [📝 Run Prompter on Current File](#-run-prompter-on-current-file)
+  - [🔄 Apply Diff from Current File](#-apply-diff-from-current-file)
+- [Logging](#logging)
+- [Development](#development)
+- [License](#license)
 
-🔄 Apply Diff: Apply changes from a .diff or .patch file directly to your workspace. The extension handles path resolution and applies the changes, providing a summary of successful and failed hunks.
+---
 
-🪵 Robust Logging: Every command's execution is logged in detail to ~/.galaxy-vscode-extension/galaxy-vscode-extension.log. Notifications provide a convenient button to open the log file directly.
+## Description
 
-Installation
-Open Visual Studio Code.
+The Galaxy VSCode Extension is a suite of tools built directly into your editor to handle common but complex tasks. Whether you need to view an entire directory at once, prepare a large codebase for an LLM prompt, or apply a patch file without dropping into the terminal, this extension has you covered.
 
-Go to the Extensions view (Ctrl+Shift+X or Cmd+Shift+X).
+## Key Features
 
-Search for "Galaxy VSCode Extension".
+* **📂 Full Project View**: Instantly open every text file within a selected directory, each in its own separate editor pane. Perfect for getting a "full view" of a component or module.
+* **🤖 LLM-Ready Prompts**: Select a file and run the prompter to recursively expand all local file and directory paths mentioned within it. The tool intelligently packages the contents into a single, context-rich output, ready for any Large Language Model.
+* **🔄 Seamless Patching**: Apply changes from a `.diff` or `.patch` file directly to your workspace. The extension handles path resolution and provides a clear summary of successful and failed hunks.
+* **🪵 Robust Logging**: Every command's execution is logged in detail for easy debugging and verification.
 
-Click Install.
+---
 
-Reload VS Code if prompted.
+## Commands & Keybindings
 
-Usage & Commands
-1. Open Folder Files in Panes
-This command opens all text files in a directory in a grid of editor panes.
+Here is a summary of the commands provided by the Galaxy Extension:
 
-How to use:
+| Command                         | Description                               | Default Keybinding (Win/Linux) | Default Keybinding (macOS) |
+| ------------------------------- | ----------------------------------------- | ------------------------------ | -------------------------- |
+| `Open Folder Files in Panes`    | Opens all files in a folder in panes.     | *None* (Use context menu)      | *None* (Use context menu)  |
+| `Run Prompter on Current File`  | Generates LLM prompt from active file.    | `Ctrl+Alt+P`                   | `Cmd+Alt+P`                |
+| `Apply Diff from Current File`  | Applies patch from the active diff file.  | `Ctrl+Alt+D`                   | `Cmd+Alt+D`                |
+| `Test Notifications`            | Displays test notifications and logs.     | *None* | *None* |
 
-Right-click on any folder in the VS Code Explorer.
+---
 
-Select "Open Folder Files in Panes" from the context menu.
+## Installation
 
-Command Palette: > Galaxy: Open Folder Files in Panes
+1.  Open **Visual Studio Code**.
+2.  Navigate to the **Extensions** view ( `Ctrl+Shift+X` or `Cmd+Shift+X` ).
+3.  Search for `Galaxy VSCode Extension`.
+4.  Click **Install**.
+5.  Reload VS Code if prompted.
 
-2. Run Prompter on Current File
-This command processes the currently active file, finds all file/directory paths, and consolidates their content into the clipboard.
+---
 
-How to use:
+## Usage Guide
 
-Open the file you want to use as the source for the prompter.
+### 📂 Open Folder in Panes
 
-Use the keybinding Ctrl+Alt+P (Cmd+Alt+P on macOS).
+This command gives you an immediate, comprehensive view of a directory's contents.
 
-Alternatively, open the Command Palette (Ctrl+Shift+P) and run > Galaxy: Run Prompter on Current File.
+* **How to use**:
+    1.  In the VS Code Explorer, **right-click** on any folder.
+    2.  Select **"Open Folder Files in Panes"** from the context menu.
 
-A notification will confirm when the result has been copied to your clipboard.
+*(Placeholder for a GIF demonstrating the "Open Folder in Panes" feature)*
+![Demo GIF for Open Folder](https://placehold.co/600x300/2d333b/ffffff?text=Demo+GIF+Here)
 
-3. Apply Diff from Current File
-This command applies a patch from the currently active .diff or .patch file.
+### 📝 Run Prompter on Current File
 
-How to use:
+Prepares a detailed prompt for an LLM by consolidating all referenced files and directories.
 
-Open the .diff or .patch file.
+* **How to use**:
+    1.  Open the file you want to use as the source for the prompter. This file should contain paths to other files/directories (e.g., `./src/component.js`, `$HOME/config/setup.sh`).
+    2.  Press **`Ctrl+Alt+P`** (or **`Cmd+Alt+P`** on macOS).
+    3.  Alternatively, open the Command Palette (`Ctrl+Shift+P`) and run:
+        ```
+        > Galaxy: Run Prompter on Current File
+        ```
+    4.  A notification will confirm when the complete, expanded text has been copied to your clipboard.
 
-Use the keybinding Ctrl+Alt+D (Cmd+Alt+D on macOS).
+*(Placeholder for a GIF demonstrating the "Run Prompter" feature)*
+![Demo GIF for Run Prompter](https://placehold.co/600x300/2d333b/ffffff?text=Demo+GIF+Here)
 
-Alternatively, open the Command Palette (Ctrl+Shift+P) and run > Galaxy: Apply Diff from Current File.
+### 🔄 Apply Diff from Current File
 
-A summary of the operation will appear in the notifications, and detailed logs will be available in the log file.
+Applies a patch to your local files without leaving the editor.
 
-Development
-To get started with developing the extension locally:
+* **How to use**:
+    1.  Open the `.diff` or `.patch` file in the editor.
+    2.  Press **`Ctrl+Alt+D`** (or **`Cmd+Alt+D`** on macOS).
+    3.  Alternatively, open the Command Palette (`Ctrl+Shift+P`) and run:
+        ```
+        > Galaxy: Apply Diff from Current File
+        ```
+    4.  A summary of the operation will appear in the notifications. Check the logs for a detailed breakdown.
 
-Clone the repository.
+*(Placeholder for a GIF demonstrating the "Apply Diff" feature)*
+![Demo GIF for Apply Diff](https://placehold.co/600x300/2d333b/ffffff?text=Demo+GIF+Here)
 
-Run npm install to install dependencies.
+---
 
-Open the project in VS Code.
+## Logging
 
-Press F5 to open a new Extension Development Host window with the extension running.
+For debugging or verification, all extension activities are logged to a file in your home directory.
 
-License
-MIT
+* **Log File Location**: `~/.galaxy-vscode-extension/galaxy-vscode-extension.log`
+
+Notifications for most operations include an **"Open Log File"** button for quick access.
+
+---
+
+## Development
+
+Interested in contributing?
+
+1.  Clone the repository: `git clone <repository-url>`
+2.  Install dependencies: `npm install`
+3.  Open the project folder in VS Code.
+4.  Press **`F5`** to launch the Extension Development Host window. This new window will have the Galaxy extension running, and you can test your changes in real-time.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
