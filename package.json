@@ -1,0 +1,65 @@
+{
+  "name": "galaxy-vscode-extension",
+  "displayName": "Galaxy VSCode Extension",
+  "description": "A powerful VSCode extension for file management, diff application, and code prompting.",
+  "version": "0.2.0",
+  "publisher": "gemini-user",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.openFolderInPanes",
+    "onCommand:extension.runPrompter",
+    "onCommand:extension.applyDiff",
+    "onCommand:extension.testNotifications"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.openFolderInPanes",
+        "title": "Open Folder Files in Panes"
+      },
+      {
+        "command": "extension.runPrompter",
+        "title": "Run Prompter on Current File"
+      },
+      {
+        "command": "extension.applyDiff",
+        "title": "Apply Diff from Current File"
+      },
+      {
+        "command": "extension.testNotifications",
+        "title": "Test Notifications"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "extension.openFolderInPanes",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "extension.runPrompter",
+        "key": "ctrl+alt+p",
+        "mac": "cmd+alt+p",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.applyDiff",
+        "key": "ctrl+alt+d",
+        "mac": "cmd+alt+d"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0"
+  }
+}
